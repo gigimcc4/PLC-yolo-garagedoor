@@ -1,0 +1,31 @@
+# garage door stack: openplc runtime + python/jupyter notebooks
+# start:  docker compose up -d --build
+# stop:   docker compose down
+# notebooks: http://127.0.0.1:8888
+
+services:
+  openplc:
+    # pinned to the exact runtime version this project was tested with (v4.3.1)
+    image: ghcr.io/autonomy-logic/openplc-runtime@sha256:2ca9fc611f25c3ad0471b996a4bf27507ac112612292426ca6d5ca4bf06e97e6
+    ports:
+      - "1502:1502"   # modbus: door_sim and dock_shipments talk to the plc here
+      - "8443:8443"   # openplc editor connects here to upload the ladder
+    volumes:
+      - openplc-runtime-data:/var/run/runtime   # keeps the uploaded program between restarts
+    restart: unless-stopped
+
+  notebooks:
+    build: .
+    ports:
+      - "127.0.0.1:8888:8888"   # jupyter, this computer only
+    volumes:
+      - .:/app                  # your notebooks and dock.db live in this folder, not in the container
+    environment:
+      - PLC_HOST=openplc        # inside docker the plc is "openplc", not 127.0.0.1
+      - PLC_PORT=1502
+    depends_on:
+      - openplc
+
+volumes:
+  openplc-runtime-data:
+    name: openplc-runtime-data   # same volume your current container uses, so your program carries over

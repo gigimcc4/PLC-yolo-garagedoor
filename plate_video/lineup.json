@@ -1,0 +1,18 @@
+[
+ {"vehicle":"semi","color":"#2f5d8a","plate":"TRL-242","on_manifest":true,"expect":"open","note":"SHP-1002 scheduled"},
+ {"vehicle":"car","color":"#b23a32","plate":"PNX-4471","on_manifest":false,"expect":"deny","note":"passenger car, not a shipment"},
+ {"vehicle":"box","color":"#e9ecef","plate":"TRL-189","on_manifest":true,"expect":"open","note":"SHP-1003 scheduled","angle":-9},
+ {"vehicle":"semi","color":"#6b6f73","plate":"TRL-000","on_manifest":false,"expect":"deny","note":"same unknown trailer the notebook tests"},
+ {"vehicle":"bus","color":"#f2b705","plate":"BUS-2207","on_manifest":false,"expect":"deny","note":"school bus"},
+ {"vehicle":"semi","color":"#7a2e2e","plate":"TRL-195","on_manifest":true,"expect":"open","note":"SHP-1004 scheduled","angle":8},
+ {"vehicle":"semi","color":"#1f3b2c","plate":"TRL-I95","on_manifest":false,"expect":"deny","note":"near miss: letter I instead of 1 (TRL-195). opens if OCR or code maps I to 1"},
+ {"vehicle":"van","color":"#f4f4f4","plate":"TRL-127","on_manifest":true,"expect":"open","note":"SHP-1005 scheduled"},
+ {"vehicle":"pickup","color":"#22313f","plate":"HXR-3390","on_manifest":false,"expect":"deny","note":"pickup, not a shipment","angle":-7},
+ {"vehicle":"semi","color":"#c8c8c8","plate":"TRL-529","on_manifest":true,"expect":"open","note":"SHP-1006 scheduled"},
+ {"vehicle":"box","color":"#dfe6ee","plate":"TRL-528","on_manifest":false,"expect":"deny","note":"near miss: one digit off TRL-529"},
+ {"vehicle":"semi","color":"#3d4a57","plate":"TRL-928","on_manifest":true,"expect":"open","note":"SHP-1007 scheduled. dim light and dirty plate","dusk":true,"grime":true},
+ {"vehicle":"bus","color":"#f7f7f7","plate":"CAT-1180","on_manifest":false,"expect":"deny","note":"transit bus","angle":6},
+ {"vehicle":"semi","color":"#2f5d8a","plate":"TRL-125","on_manifest":true,"expect":"deny","note":"on the manifest but status is already 'arrived', so find_truck() returns nothing. opens if you reset the day first"},
+ {"vehicle":"box","color":"#f0f0f0","plate":"TRL-44B","on_manifest":false,"expect":"deny","note":"near miss: letter B instead of 8 (TRL-448)"},
+ {"vehicle":"semi","color":"#8a5a2b","plate":"TRL-448","on_manifest":true,"expect":"open","note":"SHP-1008 scheduled"}
+]

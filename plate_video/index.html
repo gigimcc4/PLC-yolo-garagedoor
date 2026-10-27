@@ -1,0 +1,711 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; background: #8a8f94; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; }
+      .scene { position: absolute; inset: 0; }
+      .veh { position: absolute; left: 510px; top: 150px; width: 900px; height: 900px; perspective: 1600px; z-index: 2; }
+      .body { width: 900px; height: 900px; transform-origin: 50% 100%; }
+      .plate text.pl-main { font-family: "Oswald"; font-weight: 700; }
+      .plate text.pl-top { font-family: "Inter"; font-weight: 700; }
+      .dusk { position: absolute; inset: 0; background: rgba(12, 18, 34, 0.55); z-index: 3; }
+      .stamp { position: absolute; left: 40px; top: 32px; font-family: "JetBrains Mono"; font-size: 26px;
+               color: #f2f2f2; text-shadow: 0 0 4px #000; z-index: 5; }
+      .clk { position: absolute; right: 40px; top: 32px; font-family: "JetBrains Mono"; font-size: 26px;
+             color: #f2f2f2; text-shadow: 0 0 4px #000; z-index: 5; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="72.0"
+         data-width="1920" data-height="1080">
+      <svg id="lot" class="scene" viewBox="0 0 1920 1080" width="1920" height="1080" style="z-index:1">
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#b9c6d1"/><stop offset="1" stop-color="#dfe4e8"/>
+          </linearGradient>
+          <linearGradient id="asphalt" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#5e6266"/><stop offset="1" stop-color="#3d4043"/>
+          </linearGradient>
+        </defs>
+        <rect width="1920" height="300" fill="url(#sky)"/>
+        <rect x="0" y="170" width="1920" height="130" fill="#8c8270"/>
+        <rect x="60" y="190" width="150" height="110" fill="#6e6658"/><rect x="70" y="200" width="130" height="90" fill="#7b8691"/><rect x="300" y="190" width="150" height="110" fill="#6e6658"/><rect x="310" y="200" width="130" height="90" fill="#7b8691"/><rect x="540" y="190" width="150" height="110" fill="#6e6658"/><rect x="550" y="200" width="130" height="90" fill="#7b8691"/><rect x="780" y="190" width="150" height="110" fill="#6e6658"/><rect x="790" y="200" width="130" height="90" fill="#7b8691"/><rect x="1020" y="190" width="150" height="110" fill="#6e6658"/><rect x="1030" y="200" width="130" height="90" fill="#7b8691"/><rect x="1260" y="190" width="150" height="110" fill="#6e6658"/><rect x="1270" y="200" width="130" height="90" fill="#7b8691"/><rect x="1500" y="190" width="150" height="110" fill="#6e6658"/><rect x="1510" y="200" width="130" height="90" fill="#7b8691"/><rect x="1740" y="190" width="150" height="110" fill="#6e6658"/><rect x="1750" y="200" width="130" height="90" fill="#7b8691"/>
+        <polygon points="0,1080 1920,1080 1920,300 0,300" fill="url(#asphalt)"/>
+        <polygon points="930,300 990,300 1240,1080 680,1080" fill="#4a4e52"/>
+        <polygon points="957,300 963,300 964,330 956,330" fill="#e9d36a" opacity="0.8"/><polygon points="955,370 965,370 967,400 953,400" fill="#e9d36a" opacity="0.8"/><polygon points="953,440 967,440 970,470 950,470" fill="#e9d36a" opacity="0.8"/><polygon points="951,510 969,510 973,540 947,540" fill="#e9d36a" opacity="0.8"/><polygon points="949,580 971,580 976,610 944,610" fill="#e9d36a" opacity="0.8"/><polygon points="947,650 973,650 979,680 941,680" fill="#e9d36a" opacity="0.8"/><polygon points="945,720 975,720 982,750 938,750" fill="#e9d36a" opacity="0.8"/><polygon points="943,790 977,790 985,820 935,820" fill="#e9d36a" opacity="0.8"/><polygon points="941,860 979,860 988,890 932,890" fill="#e9d36a" opacity="0.8"/><polygon points="939,930 981,930 991,960 929,960" fill="#e9d36a" opacity="0.8"/><polygon points="937,1000 983,1000 994,1030 926,1030" fill="#e9d36a" opacity="0.8"/>
+        <polygon points="560,300 600,300 120,1080 20,1080" fill="#e8e8e8" opacity="0.6"/>
+        <polygon points="1320,300 1360,300 1900,1080 1800,1080" fill="#e8e8e8" opacity="0.6"/>
+      </svg>
+      
+      <div id="v01" class="clip veh" data-start="0.0" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v01-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="70" y="10" width="860" height="230" rx="6" fill="#d7d9dc" stroke="#9aa0a6" stroke-width="6"/>
+    <rect x="120" y="150" width="760" height="640" rx="40" fill="#2f5d8a"/>
+    <rect x="160" y="130" width="680" height="40" rx="12" fill="#2f5d8a"/>
+    <rect x="300" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="420" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="546" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="666" y="138" width="34" height="16" rx="5" fill="#f6a623"/>
+    <rect x="170" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M195.6 385.5 L282.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/><rect x="510" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M535.6 385.5 L622.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/>
+    <rect x="50" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="58" y="240" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="904" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="912" y="240" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="330" y="450" width="340" height="320" rx="14" fill="#c9ccd0" stroke="#8d939a" stroke-width="6"/>
+    <rect x="350" y="470" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="506" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="542" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="578" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="614" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="650" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="686" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="722" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="758" width="300" height="16" rx="4" fill="#4b5157"/>
+    <rect x="165" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="173" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/><rect x="715" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="723" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/>
+    <rect x="80" y="770" width="840" height="120" rx="14" fill="#cfd3d7" stroke="#80868c" stroke-width="6"/>
+    <rect x="110" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="122" y="890" width="96" height="90" rx="12" fill="#262626"/><rect x="770" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="782" y="890" width="96" height="90" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="386" y="781" width="228" height="118.0" rx="11.0" fill="#1a1a1a"/>
+      <rect x="390" y="785" width="220" height="110.0" rx="8.8" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.9599999999999995"/>
+      <text class="pl-top" x="500.0" y="807.0" font-size="14.3"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="877.4" font-size="70.4" fill="#0d1b3e" text-anchor="middle"
+            textLength="184.79999999999998" lengthAdjust="spacingAndGlyphs">TRL-242</text>
+      
+      <circle cx="416.4" cy="800.4" r="3.9599999999999995" fill="#888"/>
+      <circle cx="583.6" cy="800.4" r="3.9599999999999995" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v02" class="clip veh" data-start="4.5" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v02-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <path d="M300 520 L360 380 Q500 350 640 380 L700 520 Z" fill="#b23a32" stroke="#222" stroke-width="6"/>
+    <path d="M330 515 L380 400 Q500 375 620 400 L670 515 Z" fill="url(#glass)" stroke="#1b1b1b" stroke-width="6"/>
+    <rect x="170" y="510" width="660" height="300" rx="70" fill="#b23a32" stroke="#222" stroke-width="6"/>
+    <rect x="140" y="470" width="46" height="70" rx="10" fill="#1d1d1d"/><rect x="148" y="480" width="30" height="50" rx="6" fill="#5f6b78"/>
+    <rect x="814" y="470" width="46" height="70" rx="10" fill="#1d1d1d"/><rect x="822" y="480" width="30" height="50" rx="6" fill="#5f6b78"/>
+    <rect x="390" y="600" width="220" height="80" rx="30" fill="#1f2326"/>
+    <rect x="200" y="580" width="120" height="60" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="208" y="588" width="48.0" height="44" rx="6" fill="#fffbe6"/><rect x="680" y="580" width="120" height="60" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="688" y="588" width="48.0" height="44" rx="6" fill="#fffbe6"/>
+    <rect x="180" y="720" width="640" height="100" rx="40" fill="#2e3236"/>
+    <rect x="200" y="800" width="100" height="130" rx="18" fill="#141414"/><rect x="212" y="810" width="76" height="100" rx="12" fill="#262626"/><rect x="700" y="800" width="100" height="130" rx="18" fill="#141414"/><rect x="712" y="810" width="76" height="100" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="421" y="724" width="158" height="83.0" rx="7.5" fill="#1a1a1a"/>
+      <rect x="425" y="728" width="150" height="75.0" rx="6.0" fill="#ffffff" stroke="#0d1b3e" stroke-width="2.6999999999999997"/>
+      <text class="pl-top" x="500.0" y="743.0" font-size="9.75"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="791.0" font-size="48.0" fill="#0d1b3e" text-anchor="middle"
+            textLength="126.0" lengthAdjust="spacingAndGlyphs">PNX-4471</text>
+      
+      <circle cx="443.0" cy="738.5" r="2.6999999999999997" fill="#888"/>
+      <circle cx="557.0" cy="738.5" r="2.6999999999999997" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v03" class="clip veh" data-start="9.0" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v03-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="60" y="0" width="880" height="520" rx="8" fill="#e9ecef" stroke="#9aa0a6" stroke-width="8"/>
+    <rect x="180" y="300" width="640" height="520" rx="40" fill="#f2f2f2" stroke="#b5b5b5" stroke-width="6"/>
+    <rect x="220" y="340" width="560" height="210" rx="24" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M264.8 518.5 L416.0 365.2" stroke="#ffffff" stroke-opacity="0.18" stroke-width="28.0"/>
+    <rect x="120" y="380" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="128" y="390" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="834" y="380" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="842" y="390" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="370" y="590" width="260" height="140" rx="14" fill="#2b2f33"/>
+    <rect x="385" y="605" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="631" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="657" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="683" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="709" width="230" height="12" rx="4" fill="#555c63"/>
+    <rect x="215" y="600" width="120" height="70" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="223" y="608" width="48.0" height="54" rx="6" fill="#fffbe6"/><rect x="665" y="600" width="120" height="70" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="673" y="608" width="48.0" height="54" rx="6" fill="#fffbe6"/>
+    <rect x="160" y="780" width="680" height="110" rx="14" fill="#3a3f44"/>
+    <rect x="190" y="870" width="120" height="130" rx="18" fill="#141414"/><rect x="202" y="880" width="96" height="100" rx="12" fill="#262626"/><rect x="690" y="870" width="120" height="130" rx="18" fill="#141414"/><rect x="702" y="880" width="96" height="100" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="406" y="781" width="188" height="98.0" rx="9.0" fill="#1a1a1a"/>
+      <rect x="410" y="785" width="180" height="90.0" rx="7.2" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.2399999999999998"/>
+      <text class="pl-top" x="500.0" y="803.0" font-size="11.700000000000001"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="860.6" font-size="57.6" fill="#0d1b3e" text-anchor="middle"
+            textLength="151.2" lengthAdjust="spacingAndGlyphs">TRL-189</text>
+      
+      <circle cx="431.6" cy="797.6" r="3.2399999999999998" fill="#888"/>
+      <circle cx="568.4" cy="797.6" r="3.2399999999999998" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v04" class="clip veh" data-start="13.5" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v04-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="70" y="10" width="860" height="230" rx="6" fill="#d7d9dc" stroke="#9aa0a6" stroke-width="6"/>
+    <rect x="120" y="150" width="760" height="640" rx="40" fill="#6b6f73"/>
+    <rect x="160" y="130" width="680" height="40" rx="12" fill="#6b6f73"/>
+    <rect x="300" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="420" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="546" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="666" y="138" width="34" height="16" rx="5" fill="#f6a623"/>
+    <rect x="170" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M195.6 385.5 L282.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/><rect x="510" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M535.6 385.5 L622.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/>
+    <rect x="50" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="58" y="240" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="904" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="912" y="240" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="330" y="450" width="340" height="320" rx="14" fill="#c9ccd0" stroke="#8d939a" stroke-width="6"/>
+    <rect x="350" y="470" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="506" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="542" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="578" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="614" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="650" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="686" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="722" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="758" width="300" height="16" rx="4" fill="#4b5157"/>
+    <rect x="165" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="173" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/><rect x="715" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="723" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/>
+    <rect x="80" y="770" width="840" height="120" rx="14" fill="#cfd3d7" stroke="#80868c" stroke-width="6"/>
+    <rect x="110" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="122" y="890" width="96" height="90" rx="12" fill="#262626"/><rect x="770" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="782" y="890" width="96" height="90" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="386" y="781" width="228" height="118.0" rx="11.0" fill="#1a1a1a"/>
+      <rect x="390" y="785" width="220" height="110.0" rx="8.8" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.9599999999999995"/>
+      <text class="pl-top" x="500.0" y="807.0" font-size="14.3"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="877.4" font-size="70.4" fill="#0d1b3e" text-anchor="middle"
+            textLength="184.79999999999998" lengthAdjust="spacingAndGlyphs">TRL-000</text>
+      
+      <circle cx="416.4" cy="800.4" r="3.9599999999999995" fill="#888"/>
+      <circle cx="583.6" cy="800.4" r="3.9599999999999995" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v05" class="clip veh" data-start="18.0" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v05-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="130" y="40" width="740" height="860" rx="50" fill="#f2b705" stroke="#555" stroke-width="6"/>
+    <rect x="200" y="70" width="600" height="70" rx="10" fill="#111"/>
+    <rect x="230" y="92" width="540" height="26" rx="6" fill="#ff9c1a" opacity="0.55"/>
+    <rect x="170" y="160" width="660" height="420" rx="30" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M222.8 517.0 L401.0 210.4" stroke="#ffffff" stroke-opacity="0.18" stroke-width="33.0"/>
+    <rect x="60" y="180" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="68" y="190" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="894" y="180" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="902" y="190" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="180" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="188" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/><rect x="700" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="708" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/>
+    <rect x="370" y="630" width="260" height="90" rx="10" fill="#222"/>
+    <rect x="120" y="780" width="760" height="120" rx="16" fill="#2b2b2b"/>
+    <rect x="160" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="172" y="890" width="96" height="90" rx="12" fill="#262626"/><rect x="720" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="732" y="890" width="96" height="90" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="406" y="788" width="188" height="98.0" rx="9.0" fill="#1a1a1a"/>
+      <rect x="410" y="792" width="180" height="90.0" rx="7.2" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.2399999999999998"/>
+      <text class="pl-top" x="500.0" y="810.0" font-size="11.700000000000001"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="867.6" font-size="57.6" fill="#0d1b3e" text-anchor="middle"
+            textLength="151.2" lengthAdjust="spacingAndGlyphs">BUS-2207</text>
+      
+      <circle cx="431.6" cy="804.6" r="3.2399999999999998" fill="#888"/>
+      <circle cx="568.4" cy="804.6" r="3.2399999999999998" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v06" class="clip veh" data-start="22.5" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v06-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="70" y="10" width="860" height="230" rx="6" fill="#d7d9dc" stroke="#9aa0a6" stroke-width="6"/>
+    <rect x="120" y="150" width="760" height="640" rx="40" fill="#7a2e2e"/>
+    <rect x="160" y="130" width="680" height="40" rx="12" fill="#7a2e2e"/>
+    <rect x="300" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="420" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="546" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="666" y="138" width="34" height="16" rx="5" fill="#f6a623"/>
+    <rect x="170" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M195.6 385.5 L282.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/><rect x="510" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M535.6 385.5 L622.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/>
+    <rect x="50" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="58" y="240" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="904" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="912" y="240" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="330" y="450" width="340" height="320" rx="14" fill="#c9ccd0" stroke="#8d939a" stroke-width="6"/>
+    <rect x="350" y="470" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="506" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="542" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="578" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="614" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="650" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="686" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="722" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="758" width="300" height="16" rx="4" fill="#4b5157"/>
+    <rect x="165" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="173" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/><rect x="715" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="723" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/>
+    <rect x="80" y="770" width="840" height="120" rx="14" fill="#cfd3d7" stroke="#80868c" stroke-width="6"/>
+    <rect x="110" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="122" y="890" width="96" height="90" rx="12" fill="#262626"/><rect x="770" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="782" y="890" width="96" height="90" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="386" y="781" width="228" height="118.0" rx="11.0" fill="#1a1a1a"/>
+      <rect x="390" y="785" width="220" height="110.0" rx="8.8" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.9599999999999995"/>
+      <text class="pl-top" x="500.0" y="807.0" font-size="14.3"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="877.4" font-size="70.4" fill="#0d1b3e" text-anchor="middle"
+            textLength="184.79999999999998" lengthAdjust="spacingAndGlyphs">TRL-195</text>
+      
+      <circle cx="416.4" cy="800.4" r="3.9599999999999995" fill="#888"/>
+      <circle cx="583.6" cy="800.4" r="3.9599999999999995" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v07" class="clip veh" data-start="27.0" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v07-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="70" y="10" width="860" height="230" rx="6" fill="#d7d9dc" stroke="#9aa0a6" stroke-width="6"/>
+    <rect x="120" y="150" width="760" height="640" rx="40" fill="#1f3b2c"/>
+    <rect x="160" y="130" width="680" height="40" rx="12" fill="#1f3b2c"/>
+    <rect x="300" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="420" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="546" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="666" y="138" width="34" height="16" rx="5" fill="#f6a623"/>
+    <rect x="170" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M195.6 385.5 L282.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/><rect x="510" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M535.6 385.5 L622.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/>
+    <rect x="50" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="58" y="240" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="904" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="912" y="240" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="330" y="450" width="340" height="320" rx="14" fill="#c9ccd0" stroke="#8d939a" stroke-width="6"/>
+    <rect x="350" y="470" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="506" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="542" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="578" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="614" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="650" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="686" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="722" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="758" width="300" height="16" rx="4" fill="#4b5157"/>
+    <rect x="165" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="173" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/><rect x="715" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="723" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/>
+    <rect x="80" y="770" width="840" height="120" rx="14" fill="#cfd3d7" stroke="#80868c" stroke-width="6"/>
+    <rect x="110" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="122" y="890" width="96" height="90" rx="12" fill="#262626"/><rect x="770" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="782" y="890" width="96" height="90" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="386" y="781" width="228" height="118.0" rx="11.0" fill="#1a1a1a"/>
+      <rect x="390" y="785" width="220" height="110.0" rx="8.8" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.9599999999999995"/>
+      <text class="pl-top" x="500.0" y="807.0" font-size="14.3"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="877.4" font-size="70.4" fill="#0d1b3e" text-anchor="middle"
+            textLength="184.79999999999998" lengthAdjust="spacingAndGlyphs">TRL-I95</text>
+      
+      <circle cx="416.4" cy="800.4" r="3.9599999999999995" fill="#888"/>
+      <circle cx="583.6" cy="800.4" r="3.9599999999999995" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v08" class="clip veh" data-start="31.5" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v08-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <path d="M230 300 Q250 160 500 150 Q750 160 770 300 L800 860 L200 860 Z" fill="#f4f4f4" stroke="#a7adb3" stroke-width="6"/>
+    <rect x="250" y="230" width="500" height="250" rx="40" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M290.0 442.5 L425.0 260.0" stroke="#ffffff" stroke-opacity="0.18" stroke-width="25.0"/>
+    <rect x="170" y="420" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="178" y="430" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="784" y="420" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="792" y="430" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="360" y="580" width="280" height="110" rx="30" fill="#2b2f33"/>
+    <rect x="225" y="570" width="120" height="70" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="233" y="578" width="48.0" height="54" rx="6" fill="#fffbe6"/><rect x="655" y="570" width="120" height="70" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="663" y="578" width="48.0" height="54" rx="6" fill="#fffbe6"/>
+    <rect x="200" y="760" width="600" height="110" rx="20" fill="#3a3f44"/>
+    <rect x="220" y="860" width="100" height="140" rx="18" fill="#141414"/><rect x="232" y="870" width="76" height="110" rx="12" fill="#262626"/><rect x="680" y="860" width="100" height="140" rx="18" fill="#141414"/><rect x="692" y="870" width="76" height="110" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="416" y="766" width="168" height="88.0" rx="8.0" fill="#1a1a1a"/>
+      <rect x="420" y="770" width="160" height="80.0" rx="6.4" fill="#ffffff" stroke="#0d1b3e" stroke-width="2.88"/>
+      <text class="pl-top" x="500.0" y="786.0" font-size="10.4"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="837.2" font-size="51.2" fill="#0d1b3e" text-anchor="middle"
+            textLength="134.4" lengthAdjust="spacingAndGlyphs">TRL-127</text>
+      
+      <circle cx="439.2" cy="781.2" r="2.88" fill="#888"/>
+      <circle cx="560.8" cy="781.2" r="2.88" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v09" class="clip veh" data-start="36.0" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v09-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <path d="M270 470 L320 300 Q500 270 680 300 L730 470 Z" fill="#22313f" stroke="#222" stroke-width="6"/>
+    <path d="M300 465 L340 320 Q500 295 660 320 L700 465 Z" fill="url(#glass)" stroke="#1b1b1b" stroke-width="6"/>
+    <rect x="150" y="460" width="700" height="380" rx="40" fill="#22313f" stroke="#222" stroke-width="6"/>
+    <rect x="110" y="400" width="46" height="90" rx="10" fill="#1d1d1d"/><rect x="118" y="410" width="30" height="70" rx="6" fill="#5f6b78"/>
+    <rect x="844" y="400" width="46" height="90" rx="10" fill="#1d1d1d"/><rect x="852" y="410" width="30" height="70" rx="6" fill="#5f6b78"/>
+    <rect x="340" y="540" width="320" height="150" rx="12" fill="#9ea4aa"/>
+    <rect x="355" y="555" width="290" height="14" rx="4" fill="#3b4045"/><rect x="355" y="585" width="290" height="14" rx="4" fill="#3b4045"/><rect x="355" y="615" width="290" height="14" rx="4" fill="#3b4045"/><rect x="355" y="645" width="290" height="14" rx="4" fill="#3b4045"/><rect x="355" y="675" width="290" height="14" rx="4" fill="#3b4045"/>
+    <rect x="180" y="550" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="188" y="558" width="48.0" height="64" rx="6" fill="#fffbe6"/><rect x="700" y="550" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="708" y="558" width="48.0" height="64" rx="6" fill="#fffbe6"/>
+    <rect x="160" y="740" width="680" height="110" rx="20" fill="#c3c7cb" stroke="#80868c" stroke-width="6"/>
+    <rect x="180" y="830" width="120" height="150" rx="18" fill="#141414"/><rect x="192" y="840" width="96" height="120" rx="12" fill="#262626"/><rect x="700" y="830" width="120" height="150" rx="18" fill="#141414"/><rect x="712" y="840" width="96" height="120" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="416" y="746" width="168" height="88.0" rx="8.0" fill="#1a1a1a"/>
+      <rect x="420" y="750" width="160" height="80.0" rx="6.4" fill="#ffffff" stroke="#0d1b3e" stroke-width="2.88"/>
+      <text class="pl-top" x="500.0" y="766.0" font-size="10.4"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="817.2" font-size="51.2" fill="#0d1b3e" text-anchor="middle"
+            textLength="134.4" lengthAdjust="spacingAndGlyphs">HXR-3390</text>
+      
+      <circle cx="439.2" cy="761.2" r="2.88" fill="#888"/>
+      <circle cx="560.8" cy="761.2" r="2.88" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v10" class="clip veh" data-start="40.5" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v10-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="70" y="10" width="860" height="230" rx="6" fill="#d7d9dc" stroke="#9aa0a6" stroke-width="6"/>
+    <rect x="120" y="150" width="760" height="640" rx="40" fill="#c8c8c8"/>
+    <rect x="160" y="130" width="680" height="40" rx="12" fill="#c8c8c8"/>
+    <rect x="300" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="420" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="546" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="666" y="138" width="34" height="16" rx="5" fill="#f6a623"/>
+    <rect x="170" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M195.6 385.5 L282.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/><rect x="510" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M535.6 385.5 L622.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/>
+    <rect x="50" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="58" y="240" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="904" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="912" y="240" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="330" y="450" width="340" height="320" rx="14" fill="#c9ccd0" stroke="#8d939a" stroke-width="6"/>
+    <rect x="350" y="470" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="506" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="542" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="578" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="614" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="650" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="686" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="722" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="758" width="300" height="16" rx="4" fill="#4b5157"/>
+    <rect x="165" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="173" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/><rect x="715" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="723" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/>
+    <rect x="80" y="770" width="840" height="120" rx="14" fill="#cfd3d7" stroke="#80868c" stroke-width="6"/>
+    <rect x="110" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="122" y="890" width="96" height="90" rx="12" fill="#262626"/><rect x="770" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="782" y="890" width="96" height="90" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="386" y="781" width="228" height="118.0" rx="11.0" fill="#1a1a1a"/>
+      <rect x="390" y="785" width="220" height="110.0" rx="8.8" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.9599999999999995"/>
+      <text class="pl-top" x="500.0" y="807.0" font-size="14.3"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="877.4" font-size="70.4" fill="#0d1b3e" text-anchor="middle"
+            textLength="184.79999999999998" lengthAdjust="spacingAndGlyphs">TRL-529</text>
+      
+      <circle cx="416.4" cy="800.4" r="3.9599999999999995" fill="#888"/>
+      <circle cx="583.6" cy="800.4" r="3.9599999999999995" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v11" class="clip veh" data-start="45.0" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v11-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="60" y="0" width="880" height="520" rx="8" fill="#dfe6ee" stroke="#9aa0a6" stroke-width="8"/>
+    <rect x="180" y="300" width="640" height="520" rx="40" fill="#f2f2f2" stroke="#b5b5b5" stroke-width="6"/>
+    <rect x="220" y="340" width="560" height="210" rx="24" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M264.8 518.5 L416.0 365.2" stroke="#ffffff" stroke-opacity="0.18" stroke-width="28.0"/>
+    <rect x="120" y="380" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="128" y="390" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="834" y="380" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="842" y="390" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="370" y="590" width="260" height="140" rx="14" fill="#2b2f33"/>
+    <rect x="385" y="605" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="631" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="657" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="683" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="709" width="230" height="12" rx="4" fill="#555c63"/>
+    <rect x="215" y="600" width="120" height="70" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="223" y="608" width="48.0" height="54" rx="6" fill="#fffbe6"/><rect x="665" y="600" width="120" height="70" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="673" y="608" width="48.0" height="54" rx="6" fill="#fffbe6"/>
+    <rect x="160" y="780" width="680" height="110" rx="14" fill="#3a3f44"/>
+    <rect x="190" y="870" width="120" height="130" rx="18" fill="#141414"/><rect x="202" y="880" width="96" height="100" rx="12" fill="#262626"/><rect x="690" y="870" width="120" height="130" rx="18" fill="#141414"/><rect x="702" y="880" width="96" height="100" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="406" y="781" width="188" height="98.0" rx="9.0" fill="#1a1a1a"/>
+      <rect x="410" y="785" width="180" height="90.0" rx="7.2" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.2399999999999998"/>
+      <text class="pl-top" x="500.0" y="803.0" font-size="11.700000000000001"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="860.6" font-size="57.6" fill="#0d1b3e" text-anchor="middle"
+            textLength="151.2" lengthAdjust="spacingAndGlyphs">TRL-528</text>
+      
+      <circle cx="431.6" cy="797.6" r="3.2399999999999998" fill="#888"/>
+      <circle cx="568.4" cy="797.6" r="3.2399999999999998" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v12" class="clip veh" data-start="49.5" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v12-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="70" y="10" width="860" height="230" rx="6" fill="#d7d9dc" stroke="#9aa0a6" stroke-width="6"/>
+    <rect x="120" y="150" width="760" height="640" rx="40" fill="#3d4a57"/>
+    <rect x="160" y="130" width="680" height="40" rx="12" fill="#3d4a57"/>
+    <rect x="300" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="420" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="546" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="666" y="138" width="34" height="16" rx="5" fill="#f6a623"/>
+    <rect x="170" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M195.6 385.5 L282.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/><rect x="510" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M535.6 385.5 L622.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/>
+    <rect x="50" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="58" y="240" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="904" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="912" y="240" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="330" y="450" width="340" height="320" rx="14" fill="#c9ccd0" stroke="#8d939a" stroke-width="6"/>
+    <rect x="350" y="470" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="506" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="542" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="578" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="614" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="650" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="686" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="722" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="758" width="300" height="16" rx="4" fill="#4b5157"/>
+    <rect x="165" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="173" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/><rect x="715" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="723" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/>
+    <rect x="80" y="770" width="840" height="120" rx="14" fill="#cfd3d7" stroke="#80868c" stroke-width="6"/>
+    <rect x="110" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="122" y="890" width="96" height="90" rx="12" fill="#262626"/><rect x="770" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="782" y="890" width="96" height="90" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="386" y="781" width="228" height="118.0" rx="11.0" fill="#1a1a1a"/>
+      <rect x="390" y="785" width="220" height="110.0" rx="8.8" fill="#d9d4c4" stroke="#3a3f47" stroke-width="3.9599999999999995"/>
+      <text class="pl-top" x="500.0" y="807.0" font-size="14.3"
+            fill="#3a3f47" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="877.4" font-size="70.4" fill="#3a3f47" text-anchor="middle"
+            textLength="184.79999999999998" lengthAdjust="spacingAndGlyphs">TRL-928</text>
+      <rect x="390" y="845.5" width="220" height="49.5" rx="8.8" fill="#7a6a4f" opacity="0.35"/>
+      <circle cx="416.4" cy="800.4" r="3.9599999999999995" fill="#888"/>
+      <circle cx="583.6" cy="800.4" r="3.9599999999999995" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v13" class="clip veh" data-start="54.0" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v13-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="130" y="40" width="740" height="860" rx="50" fill="#f7f7f7" stroke="#555" stroke-width="6"/>
+    <rect x="200" y="70" width="600" height="70" rx="10" fill="#111"/>
+    <rect x="230" y="92" width="540" height="26" rx="6" fill="#ff9c1a" opacity="0.55"/>
+    <rect x="170" y="160" width="660" height="420" rx="30" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M222.8 517.0 L401.0 210.4" stroke="#ffffff" stroke-opacity="0.18" stroke-width="33.0"/>
+    <rect x="60" y="180" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="68" y="190" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="894" y="180" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="902" y="190" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="180" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="188" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/><rect x="700" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="708" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/>
+    <rect x="370" y="630" width="260" height="90" rx="10" fill="#222"/>
+    <rect x="120" y="780" width="760" height="120" rx="16" fill="#2b2b2b"/>
+    <rect x="160" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="172" y="890" width="96" height="90" rx="12" fill="#262626"/><rect x="720" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="732" y="890" width="96" height="90" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="406" y="788" width="188" height="98.0" rx="9.0" fill="#1a1a1a"/>
+      <rect x="410" y="792" width="180" height="90.0" rx="7.2" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.2399999999999998"/>
+      <text class="pl-top" x="500.0" y="810.0" font-size="11.700000000000001"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="867.6" font-size="57.6" fill="#0d1b3e" text-anchor="middle"
+            textLength="151.2" lengthAdjust="spacingAndGlyphs">CAT-1180</text>
+      
+      <circle cx="431.6" cy="804.6" r="3.2399999999999998" fill="#888"/>
+      <circle cx="568.4" cy="804.6" r="3.2399999999999998" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v14" class="clip veh" data-start="58.5" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v14-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="70" y="10" width="860" height="230" rx="6" fill="#d7d9dc" stroke="#9aa0a6" stroke-width="6"/>
+    <rect x="120" y="150" width="760" height="640" rx="40" fill="#2f5d8a"/>
+    <rect x="160" y="130" width="680" height="40" rx="12" fill="#2f5d8a"/>
+    <rect x="300" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="420" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="546" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="666" y="138" width="34" height="16" rx="5" fill="#f6a623"/>
+    <rect x="170" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M195.6 385.5 L282.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/><rect x="510" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M535.6 385.5 L622.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/>
+    <rect x="50" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="58" y="240" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="904" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="912" y="240" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="330" y="450" width="340" height="320" rx="14" fill="#c9ccd0" stroke="#8d939a" stroke-width="6"/>
+    <rect x="350" y="470" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="506" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="542" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="578" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="614" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="650" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="686" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="722" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="758" width="300" height="16" rx="4" fill="#4b5157"/>
+    <rect x="165" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="173" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/><rect x="715" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="723" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/>
+    <rect x="80" y="770" width="840" height="120" rx="14" fill="#cfd3d7" stroke="#80868c" stroke-width="6"/>
+    <rect x="110" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="122" y="890" width="96" height="90" rx="12" fill="#262626"/><rect x="770" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="782" y="890" width="96" height="90" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="386" y="781" width="228" height="118.0" rx="11.0" fill="#1a1a1a"/>
+      <rect x="390" y="785" width="220" height="110.0" rx="8.8" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.9599999999999995"/>
+      <text class="pl-top" x="500.0" y="807.0" font-size="14.3"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="877.4" font-size="70.4" fill="#0d1b3e" text-anchor="middle"
+            textLength="184.79999999999998" lengthAdjust="spacingAndGlyphs">TRL-125</text>
+      
+      <circle cx="416.4" cy="800.4" r="3.9599999999999995" fill="#888"/>
+      <circle cx="583.6" cy="800.4" r="3.9599999999999995" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v15" class="clip veh" data-start="63.0" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v15-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="60" y="0" width="880" height="520" rx="8" fill="#f0f0f0" stroke="#9aa0a6" stroke-width="8"/>
+    <rect x="180" y="300" width="640" height="520" rx="40" fill="#f2f2f2" stroke="#b5b5b5" stroke-width="6"/>
+    <rect x="220" y="340" width="560" height="210" rx="24" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M264.8 518.5 L416.0 365.2" stroke="#ffffff" stroke-opacity="0.18" stroke-width="28.0"/>
+    <rect x="120" y="380" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="128" y="390" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="834" y="380" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="842" y="390" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="370" y="590" width="260" height="140" rx="14" fill="#2b2f33"/>
+    <rect x="385" y="605" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="631" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="657" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="683" width="230" height="12" rx="4" fill="#555c63"/><rect x="385" y="709" width="230" height="12" rx="4" fill="#555c63"/>
+    <rect x="215" y="600" width="120" height="70" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="223" y="608" width="48.0" height="54" rx="6" fill="#fffbe6"/><rect x="665" y="600" width="120" height="70" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="673" y="608" width="48.0" height="54" rx="6" fill="#fffbe6"/>
+    <rect x="160" y="780" width="680" height="110" rx="14" fill="#3a3f44"/>
+    <rect x="190" y="870" width="120" height="130" rx="18" fill="#141414"/><rect x="202" y="880" width="96" height="100" rx="12" fill="#262626"/><rect x="690" y="870" width="120" height="130" rx="18" fill="#141414"/><rect x="702" y="880" width="96" height="100" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="406" y="781" width="188" height="98.0" rx="9.0" fill="#1a1a1a"/>
+      <rect x="410" y="785" width="180" height="90.0" rx="7.2" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.2399999999999998"/>
+      <text class="pl-top" x="500.0" y="803.0" font-size="11.700000000000001"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="860.6" font-size="57.6" fill="#0d1b3e" text-anchor="middle"
+            textLength="151.2" lengthAdjust="spacingAndGlyphs">TRL-44B</text>
+      
+      <circle cx="431.6" cy="797.6" r="3.2399999999999998" fill="#888"/>
+      <circle cx="568.4" cy="797.6" r="3.2399999999999998" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v16" class="clip veh" data-start="67.5" data-duration="4.5" data-track-index="2"
+           data-layout-allow-overflow data-layout-ignore>
+        <div id="v16-body" class="body">
+          <svg viewBox="0 0 1000 1000" width="900" height="900">
+<defs>
+  <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#9fb6c9"/><stop offset="1" stop-color="#2c3a46"/>
+  </linearGradient>
+</defs>
+            <ellipse cx="500" cy="1000" rx="470" ry="26" fill="#000" opacity="0.45"/>
+            
+    <rect x="70" y="10" width="860" height="230" rx="6" fill="#d7d9dc" stroke="#9aa0a6" stroke-width="6"/>
+    <rect x="120" y="150" width="760" height="640" rx="40" fill="#8a5a2b"/>
+    <rect x="160" y="130" width="680" height="40" rx="12" fill="#8a5a2b"/>
+    <rect x="300" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="420" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="546" y="138" width="34" height="16" rx="5" fill="#f6a623"/><rect x="666" y="138" width="34" height="16" rx="5" fill="#f6a623"/>
+    <rect x="170" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M195.6 385.5 L282.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/><rect x="510" y="190" width="320" height="230" rx="16" fill="url(#glass)" stroke="#1b1b1b" stroke-width="8"/><path d="M535.6 385.5 L622.0 217.6" stroke="#ffffff" stroke-opacity="0.18" stroke-width="16.0"/>
+    <rect x="50" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="58" y="240" width="30" height="130" rx="6" fill="#5f6b78"/><rect x="904" y="230" width="46" height="150" rx="10" fill="#1d1d1d"/><rect x="912" y="240" width="30" height="130" rx="6" fill="#5f6b78"/>
+    <rect x="330" y="450" width="340" height="320" rx="14" fill="#c9ccd0" stroke="#8d939a" stroke-width="6"/>
+    <rect x="350" y="470" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="506" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="542" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="578" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="614" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="650" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="686" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="722" width="300" height="16" rx="4" fill="#4b5157"/><rect x="350" y="758" width="300" height="16" rx="4" fill="#4b5157"/>
+    <rect x="165" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="173" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/><rect x="715" y="640" width="120" height="80" rx="10" fill="#f4f1e6" stroke="#555" stroke-width="4"/><rect x="723" y="648" width="48.0" height="64" rx="6" fill="#fffbe6"/>
+    <rect x="80" y="770" width="840" height="120" rx="14" fill="#cfd3d7" stroke="#80868c" stroke-width="6"/>
+    <rect x="110" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="122" y="890" width="96" height="90" rx="12" fill="#262626"/><rect x="770" y="880" width="120" height="120" rx="18" fill="#141414"/><rect x="782" y="890" width="96" height="90" rx="12" fill="#262626"/>
+    
+    <g class="plate">
+      <rect x="386" y="781" width="228" height="118.0" rx="11.0" fill="#1a1a1a"/>
+      <rect x="390" y="785" width="220" height="110.0" rx="8.8" fill="#ffffff" stroke="#0d1b3e" stroke-width="3.9599999999999995"/>
+      <text class="pl-top" x="500.0" y="807.0" font-size="14.3"
+            fill="#0d1b3e" text-anchor="middle" letter-spacing="2">FLEET</text>
+      <text class="pl-main" x="500.0" y="877.4" font-size="70.4" fill="#0d1b3e" text-anchor="middle"
+            textLength="184.79999999999998" lengthAdjust="spacingAndGlyphs">TRL-448</text>
+      
+      <circle cx="416.4" cy="800.4" r="3.9599999999999995" fill="#888"/>
+      <circle cx="583.6" cy="800.4" r="3.9599999999999995" fill="#888"/>
+    </g>
+    
+          </svg>
+        </div>
+      </div>
+      <div id="v12-dusk" class="clip dusk" data-start="49.5" data-duration="4.5" data-track-index="3" data-layout-ignore></div>
+      <div id="stamp" class="stamp">DOCK CAM 01 · DOOR 1</div>
+      <span id="clk000" class="clip clk" data-start="0" data-duration="1" data-track-index="5">2026-10-26 09:14:03</span><span id="clk001" class="clip clk" data-start="1" data-duration="1" data-track-index="5">2026-10-26 09:14:04</span><span id="clk002" class="clip clk" data-start="2" data-duration="1" data-track-index="5">2026-10-26 09:14:05</span><span id="clk003" class="clip clk" data-start="3" data-duration="1" data-track-index="5">2026-10-26 09:14:06</span><span id="clk004" class="clip clk" data-start="4" data-duration="1" data-track-index="5">2026-10-26 09:14:07</span><span id="clk005" class="clip clk" data-start="5" data-duration="1" data-track-index="5">2026-10-26 09:14:08</span><span id="clk006" class="clip clk" data-start="6" data-duration="1" data-track-index="5">2026-10-26 09:14:09</span><span id="clk007" class="clip clk" data-start="7" data-duration="1" data-track-index="5">2026-10-26 09:14:10</span><span id="clk008" class="clip clk" data-start="8" data-duration="1" data-track-index="5">2026-10-26 09:14:11</span><span id="clk009" class="clip clk" data-start="9" data-duration="1" data-track-index="5">2026-10-26 09:14:12</span><span id="clk010" class="clip clk" data-start="10" data-duration="1" data-track-index="5">2026-10-26 09:14:13</span><span id="clk011" class="clip clk" data-start="11" data-duration="1" data-track-index="5">2026-10-26 09:14:14</span><span id="clk012" class="clip clk" data-start="12" data-duration="1" data-track-index="5">2026-10-26 09:14:15</span><span id="clk013" class="clip clk" data-start="13" data-duration="1" data-track-index="5">2026-10-26 09:14:16</span><span id="clk014" class="clip clk" data-start="14" data-duration="1" data-track-index="5">2026-10-26 09:14:17</span><span id="clk015" class="clip clk" data-start="15" data-duration="1" data-track-index="5">2026-10-26 09:14:18</span><span id="clk016" class="clip clk" data-start="16" data-duration="1" data-track-index="5">2026-10-26 09:14:19</span><span id="clk017" class="clip clk" data-start="17" data-duration="1" data-track-index="5">2026-10-26 09:14:20</span><span id="clk018" class="clip clk" data-start="18" data-duration="1" data-track-index="5">2026-10-26 09:14:21</span><span id="clk019" class="clip clk" data-start="19" data-duration="1" data-track-index="5">2026-10-26 09:14:22</span><span id="clk020" class="clip clk" data-start="20" data-duration="1" data-track-index="5">2026-10-26 09:14:23</span><span id="clk021" class="clip clk" data-start="21" data-duration="1" data-track-index="5">2026-10-26 09:14:24</span><span id="clk022" class="clip clk" data-start="22" data-duration="1" data-track-index="5">2026-10-26 09:14:25</span><span id="clk023" class="clip clk" data-start="23" data-duration="1" data-track-index="5">2026-10-26 09:14:26</span><span id="clk024" class="clip clk" data-start="24" data-duration="1" data-track-index="5">2026-10-26 09:14:27</span><span id="clk025" class="clip clk" data-start="25" data-duration="1" data-track-index="5">2026-10-26 09:14:28</span><span id="clk026" class="clip clk" data-start="26" data-duration="1" data-track-index="5">2026-10-26 09:14:29</span><span id="clk027" class="clip clk" data-start="27" data-duration="1" data-track-index="5">2026-10-26 09:14:30</span><span id="clk028" class="clip clk" data-start="28" data-duration="1" data-track-index="5">2026-10-26 09:14:31</span><span id="clk029" class="clip clk" data-start="29" data-duration="1" data-track-index="5">2026-10-26 09:14:32</span><span id="clk030" class="clip clk" data-start="30" data-duration="1" data-track-index="5">2026-10-26 09:14:33</span><span id="clk031" class="clip clk" data-start="31" data-duration="1" data-track-index="5">2026-10-26 09:14:34</span><span id="clk032" class="clip clk" data-start="32" data-duration="1" data-track-index="5">2026-10-26 09:14:35</span><span id="clk033" class="clip clk" data-start="33" data-duration="1" data-track-index="5">2026-10-26 09:14:36</span><span id="clk034" class="clip clk" data-start="34" data-duration="1" data-track-index="5">2026-10-26 09:14:37</span><span id="clk035" class="clip clk" data-start="35" data-duration="1" data-track-index="5">2026-10-26 09:14:38</span><span id="clk036" class="clip clk" data-start="36" data-duration="1" data-track-index="5">2026-10-26 09:14:39</span><span id="clk037" class="clip clk" data-start="37" data-duration="1" data-track-index="5">2026-10-26 09:14:40</span><span id="clk038" class="clip clk" data-start="38" data-duration="1" data-track-index="5">2026-10-26 09:14:41</span><span id="clk039" class="clip clk" data-start="39" data-duration="1" data-track-index="5">2026-10-26 09:14:42</span><span id="clk040" class="clip clk" data-start="40" data-duration="1" data-track-index="5">2026-10-26 09:14:43</span><span id="clk041" class="clip clk" data-start="41" data-duration="1" data-track-index="5">2026-10-26 09:14:44</span><span id="clk042" class="clip clk" data-start="42" data-duration="1" data-track-index="5">2026-10-26 09:14:45</span><span id="clk043" class="clip clk" data-start="43" data-duration="1" data-track-index="5">2026-10-26 09:14:46</span><span id="clk044" class="clip clk" data-start="44" data-duration="1" data-track-index="5">2026-10-26 09:14:47</span><span id="clk045" class="clip clk" data-start="45" data-duration="1" data-track-index="5">2026-10-26 09:14:48</span><span id="clk046" class="clip clk" data-start="46" data-duration="1" data-track-index="5">2026-10-26 09:14:49</span><span id="clk047" class="clip clk" data-start="47" data-duration="1" data-track-index="5">2026-10-26 09:14:50</span><span id="clk048" class="clip clk" data-start="48" data-duration="1" data-track-index="5">2026-10-26 09:14:51</span><span id="clk049" class="clip clk" data-start="49" data-duration="1" data-track-index="5">2026-10-26 09:14:52</span><span id="clk050" class="clip clk" data-start="50" data-duration="1" data-track-index="5">2026-10-26 09:14:53</span><span id="clk051" class="clip clk" data-start="51" data-duration="1" data-track-index="5">2026-10-26 09:14:54</span><span id="clk052" class="clip clk" data-start="52" data-duration="1" data-track-index="5">2026-10-26 09:14:55</span><span id="clk053" class="clip clk" data-start="53" data-duration="1" data-track-index="5">2026-10-26 09:14:56</span><span id="clk054" class="clip clk" data-start="54" data-duration="1" data-track-index="5">2026-10-26 09:14:57</span><span id="clk055" class="clip clk" data-start="55" data-duration="1" data-track-index="5">2026-10-26 09:14:58</span><span id="clk056" class="clip clk" data-start="56" data-duration="1" data-track-index="5">2026-10-26 09:14:59</span><span id="clk057" class="clip clk" data-start="57" data-duration="1" data-track-index="5">2026-10-26 09:15:00</span><span id="clk058" class="clip clk" data-start="58" data-duration="1" data-track-index="5">2026-10-26 09:15:01</span><span id="clk059" class="clip clk" data-start="59" data-duration="1" data-track-index="5">2026-10-26 09:15:02</span><span id="clk060" class="clip clk" data-start="60" data-duration="1" data-track-index="5">2026-10-26 09:15:03</span><span id="clk061" class="clip clk" data-start="61" data-duration="1" data-track-index="5">2026-10-26 09:15:04</span><span id="clk062" class="clip clk" data-start="62" data-duration="1" data-track-index="5">2026-10-26 09:15:05</span><span id="clk063" class="clip clk" data-start="63" data-duration="1" data-track-index="5">2026-10-26 09:15:06</span><span id="clk064" class="clip clk" data-start="64" data-duration="1" data-track-index="5">2026-10-26 09:15:07</span><span id="clk065" class="clip clk" data-start="65" data-duration="1" data-track-index="5">2026-10-26 09:15:08</span><span id="clk066" class="clip clk" data-start="66" data-duration="1" data-track-index="5">2026-10-26 09:15:09</span><span id="clk067" class="clip clk" data-start="67" data-duration="1" data-track-index="5">2026-10-26 09:15:10</span><span id="clk068" class="clip clk" data-start="68" data-duration="1" data-track-index="5">2026-10-26 09:15:11</span><span id="clk069" class="clip clk" data-start="69" data-duration="1" data-track-index="5">2026-10-26 09:15:12</span><span id="clk070" class="clip clk" data-start="70" data-duration="1" data-track-index="5">2026-10-26 09:15:13</span><span id="clk071" class="clip clk" data-start="71" data-duration="1" data-track-index="5">2026-10-26 09:15:14</span>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      
+    tl.fromTo("#v01-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 0.0);
+    tl.to("#v01-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 1.8);
+    tl.to("#v01-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 3.4);
+    tl.fromTo("#v02-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 4.5);
+    tl.to("#v02-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 6.3);
+    tl.to("#v02-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 7.9);
+    tl.fromTo("#v03-body", {x: 0, y: -700, scale: 0.12, rotationY: -9},
+      {x: 0, y: 0, scale: 1, rotationY: -5.3999999999999995, duration: 1.6, ease: "power2.out"}, 9.0);
+    tl.to("#v03-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 10.799999999999999);
+    tl.to("#v03-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 12.4);
+    tl.fromTo("#v04-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 13.5);
+    tl.to("#v04-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 15.299999999999999);
+    tl.to("#v04-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 16.9);
+    tl.fromTo("#v05-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 18.0);
+    tl.to("#v05-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 19.8);
+    tl.to("#v05-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 21.4);
+    tl.fromTo("#v06-body", {x: 0, y: -700, scale: 0.12, rotationY: 8},
+      {x: 0, y: 0, scale: 1, rotationY: 4.8, duration: 1.6, ease: "power2.out"}, 22.5);
+    tl.to("#v06-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 24.3);
+    tl.to("#v06-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 25.9);
+    tl.fromTo("#v07-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 27.0);
+    tl.to("#v07-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 28.8);
+    tl.to("#v07-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 30.4);
+    tl.fromTo("#v08-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 31.5);
+    tl.to("#v08-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 33.300000000000004);
+    tl.to("#v08-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 34.9);
+    tl.fromTo("#v09-body", {x: 0, y: -700, scale: 0.12, rotationY: -7},
+      {x: 0, y: 0, scale: 1, rotationY: -4.2, duration: 1.6, ease: "power2.out"}, 36.0);
+    tl.to("#v09-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 37.800000000000004);
+    tl.to("#v09-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 39.4);
+    tl.fromTo("#v10-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 40.5);
+    tl.to("#v10-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 42.300000000000004);
+    tl.to("#v10-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 43.9);
+    tl.fromTo("#v11-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 45.0);
+    tl.to("#v11-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 46.800000000000004);
+    tl.to("#v11-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 48.4);
+    tl.fromTo("#v12-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 49.5);
+    tl.to("#v12-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 51.300000000000004);
+    tl.to("#v12-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 52.9);
+    tl.fromTo("#v13-body", {x: 0, y: -700, scale: 0.12, rotationY: 6},
+      {x: 0, y: 0, scale: 1, rotationY: 3.5999999999999996, duration: 1.6, ease: "power2.out"}, 54.0);
+    tl.to("#v13-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 55.800000000000004);
+    tl.to("#v13-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 57.4);
+    tl.fromTo("#v14-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 58.5);
+    tl.to("#v14-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 60.300000000000004);
+    tl.to("#v14-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 61.9);
+    tl.fromTo("#v15-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 63.0);
+    tl.to("#v15-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 64.8);
+    tl.to("#v15-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 66.4);
+    tl.fromTo("#v16-body", {x: 0, y: -700, scale: 0.12, rotationY: 0},
+      {x: 0, y: 0, scale: 1, rotationY: 0.0, duration: 1.6, ease: "power2.out"}, 67.5);
+    tl.to("#v16-body", {y: 4, duration: 0.25, ease: "sine.inOut", yoyo: true, repeat: 3}, 69.3);
+    tl.to("#v16-body", {x: -1500, y: 30, rotationY: -25, duration: 1.0, ease: "power2.in"}, 70.9);
+      window.__timelines["main"] = tl;
+      tl.seek(0);
+    </script>
+  </body>
+</html>

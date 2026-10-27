@@ -1,0 +1,17 @@
+slot,start_s,end_s,plate_clear_from_s,plate_clear_to_s,start_frame,end_frame,vehicle,plate,on_manifest,expected_door,conditions,note
+1,0.0,4.5,1.6,3.4,0,134,semi,TRL-242,True,open,,SHP-1002 scheduled
+2,4.5,9.0,6.1,7.9,135,269,car,PNX-4471,False,deny,,"passenger car, not a shipment"
+3,9.0,13.5,10.6,12.4,270,404,box,TRL-189,True,open,angle,SHP-1003 scheduled
+4,13.5,18.0,15.1,16.9,405,539,semi,TRL-000,False,deny,,same unknown trailer the notebook tests
+5,18.0,22.5,19.6,21.4,540,674,bus,BUS-2207,False,deny,,school bus
+6,22.5,27.0,24.1,25.9,675,809,semi,TRL-195,True,open,angle,SHP-1004 scheduled
+7,27.0,31.5,28.6,30.4,810,944,semi,TRL-I95,False,deny,,near miss: letter I instead of 1 (TRL-195). opens if OCR or code maps I to 1
+8,31.5,36.0,33.1,34.9,945,1079,van,TRL-127,True,open,,SHP-1005 scheduled
+9,36.0,40.5,37.6,39.4,1080,1214,pickup,HXR-3390,False,deny,angle,"pickup, not a shipment"
+10,40.5,45.0,42.1,43.9,1215,1349,semi,TRL-529,True,open,,SHP-1006 scheduled
+11,45.0,49.5,46.6,48.4,1350,1484,box,TRL-528,False,deny,,near miss: one digit off TRL-529
+12,49.5,54.0,51.1,52.9,1485,1619,semi,TRL-928,True,open,dusk;grime,SHP-1007 scheduled. dim light and dirty plate
+13,54.0,58.5,55.6,57.4,1620,1754,bus,CAT-1180,False,deny,angle,transit bus
+14,58.5,63.0,60.1,61.9,1755,1889,semi,TRL-125,True,deny,,"on the manifest but status is already 'arrived', so find_truck() returns nothing. opens if you reset the day first"
+15,63.0,67.5,64.6,66.4,1890,2024,box,TRL-44B,False,deny,,near miss: letter B instead of 8 (TRL-448)
+16,67.5,72.0,69.1,70.9,2025,2159,semi,TRL-448,True,open,,SHP-1008 scheduled

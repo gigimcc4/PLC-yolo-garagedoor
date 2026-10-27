@@ -1,0 +1,14 @@
+[project]
+name = "garage-door"
+version = "0.1.0"
+description = "simulated garage door: openplc ladder + python door sim + shipments database"
+requires-python = "==3.13.*"
+dependencies = [
+    "pymodbus==3.8.6",
+    "pandas",
+    "ipykernel",
+    "jupyterlab",
+]
+
+[tool.uv]
+package = false

@@ -1,0 +1,22 @@
+# python environment
+.venv/
+__pycache__/
+.ipynb_checkpoints/
+
+# made by the notebooks
+dock.db
+*.csv
+!plate_video/ground_truth.csv
+plate_video/dock_cam_result.mp4
+
+# downloaded model weights
+*.pt
+
+# openplc editor build output
+build/
+
+# hyperframes / node
+node_modules/
+.hyperframes/
+
+.DS_Store
