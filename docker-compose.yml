@@ -8,8 +8,8 @@ services:
     # pinned to the exact runtime version this project was tested with (v4.3.1)
     image: ghcr.io/autonomy-logic/openplc-runtime@sha256:2ca9fc611f25c3ad0471b996a4bf27507ac112612292426ca6d5ca4bf06e97e6
     ports:
-      - "1502:1502"   # modbus: door_sim and dock_shipments talk to the plc here
-      - "8443:8443"   # openplc editor connects here to upload the ladder
+      - "127.0.0.1:1502:1502"   # modbus, this computer only: door_sim and dock_shipments talk to the plc here
+      - "127.0.0.1:8443:8443"   # openplc editor uploads the ladder here, this computer only
     volumes:
       - openplc-runtime-data:/var/run/runtime   # keeps the uploaded program between restarts
     restart: unless-stopped
